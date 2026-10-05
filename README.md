@@ -40,6 +40,13 @@ than "I built a chatbot".
 | 5    | 07 Production: evals, tracing, guardrails, prompt-injection defense, cost/latency | Harden P3: eval suite, dashboard, CI |
 | 6    | 08 Deploy & sell: FastAPI, Docker, cloud, packaging, pricing, listing in MCP registries | Resume, portfolio site, launch P1 |
 
+**Alongside the modules:**
+- **Python track** (30–45 min/day): only the Python each module needs, with MuleSoft comparisons.
+- **NCP-AAI concept map**: all 121 NVIDIA certification practice questions mapped to the module
+  where you build that concept, in [`NCP-AAI-CONCEPT-MAP.md`](NCP-AAI-CONCEPT-MAP.md).
+- **Free LLMs:** NVIDIA build.nvidia.com (Nemotron) by default, Gemini as backup.
+- **NVIDIA stack:** NeMo Agent Toolkit (M06), NeMo Guardrails (M07), NIM/Triton (M08).
+
 Progress is tracked in [`PROGRESS.md`](PROGRESS.md).
 
 ## Repo layout
