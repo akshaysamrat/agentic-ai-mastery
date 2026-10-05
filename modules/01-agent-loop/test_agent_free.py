@@ -24,7 +24,8 @@ class FakeClient:
         return self.responses.pop(0)
 
 
-def test_free_agent_loop():
+def test_free_agent_loop(monkeypatch):
+    monkeypatch.setattr("builtins.input", lambda prompt: "y")
     tools.TICKETS.clear()
     client = FakeClient([
         reply([call("c1", "get_order", '{"order_id": "ORD-1002"}')]),

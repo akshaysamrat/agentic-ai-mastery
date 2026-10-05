@@ -26,6 +26,7 @@ If an order has a problem, open a support ticket for it.
 Keep the final answer short and include the ticket ID if you created one."""
 
 MAX_STEPS = 8  # Safety stop, like a max-retry or timeout on a flow. Agents can loop forever.
+RISKY_TOOLS = {"create_support_ticket"}  # tools that need a human "yes" first
 
 
 def execute_tool(name: str, args: dict) -> tuple[str, bool]:
@@ -33,6 +34,11 @@ def execute_tool(name: str, args: dict) -> tuple[str, bool]:
     func = TOOL_FUNCTIONS.get(name)
     if func is None:
         return f"Unknown tool: {name}", True
+           # NEW: human approval for risky tools
+    if name in RISKY_TOOLS:
+        answer = input(f"\n  Agent wants to run {name}({args}). Approve? (y/n): ")
+        if answer.strip().lower() != "y":
+            return "A human declined this action. Do not retry. Tell the user it was not approved.", True
     try:
         return json.dumps(func(**args)), False
     except Exception as e:  # The model reads the error and can fix its next call

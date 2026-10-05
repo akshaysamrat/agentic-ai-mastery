@@ -33,7 +33,8 @@ class FakeClient:
         return self.responses.pop(0)
 
 
-def test_full_loop_with_tools_and_ticket():
+def test_full_loop_with_tools_and_ticket(monkeypatch):
+    monkeypatch.setattr("builtins.input", lambda prompt: "y")  # pretend a human typed "y"
     tools.TICKETS.clear()
     client = FakeClient([
         NS(stop_reason="tool_use", content=[tool_use("t1", "get_order", {"order_id": "ORD-1002"})]),
